@@ -1,0 +1,7 @@
+---
+- puppet-nixstats
+- puppet-bitcoind
+- puppet-vmwaretools
+- puppet-transmission
+- puppet-clamav
+- puppet-subsonic
