@@ -1,0 +1,90 @@
+---
+.gitignore:
+  paths:
+    - pkg
+
+.travis.yml:
+  email: 'craig@cwatson.org'
+  includes:
+  - rvm: 2.4.1
+    env: PUPPET_VERSION="~> 4.0" CHECK=test
+    bundler_args: --without system_tests development
+  - rvm: 2.4.1
+    env: PUPPET_VERSION="~> 5.0" CHECK=test
+    bundler_args: --without system_tests development
+  - rvm: 2.4.1
+    env: PUPPET_VERSION="~> 5.0" CHECK=rubocop
+    bundler_args: --without system_tests development
+
+Gemfile:
+  required:
+    ':test':
+      - gem: rake
+      - gem: puppetlabs_spec_helper
+        version: '~> 2.2.0'
+      - gem: rspec-puppet
+        version: '~> 2.5'
+      - gem: rspec-puppet-facts
+      - gem: rspec-puppet-utils
+      - gem: puppet-lint-absolute_classname-check
+      - gem: puppet-lint-alias-check
+      - gem: puppet-lint-package_ensure-check
+      - gem: puppet-lint-legacy_facts-check
+      - gem: puppet-lint-leading_zero-check
+      - gem: puppet-lint-global_resource-check
+      - gem: puppet-lint-file_source_rights-check
+      - gem: puppet-lint-file_ensure-check
+      - gem: puppet-lint-empty_string-check
+      - gem: puppet-lint-classes_and_types_beginning_with_digits-check
+      - gem: metadata-json-lint
+      - gem: puppet-strings
+        version: '~> 1.0'
+      - gem: redcarpet
+      - gem: rubocop
+        version: '~> 0.49.1'
+        ruby-operator: '>='
+        ruby-version: '2.3.0'
+      - gem: rubocop-rspec
+        version: '~> 1.15.0'
+        ruby-operator: '>='
+        ruby-version: '2.3.0'
+      - gem: mocha
+        version: '>= 1.2.1'
+      - gem: coveralls
+      - gem: simplecov-console
+      - gem: github_changelog_generator
+        version: '~> 1.13.0'
+        ruby-operator: '<'
+        ruby-version: '2.2.2'
+      - gem: rack
+        version: '~> 1.0'
+        ruby-operator: '<'
+        ruby-version: '2.2.2'
+      - gem: github_changelog_generator
+        ruby-operator: '>='
+        ruby-version: '2.2.2'
+      - gem: parallel_tests
+    ':development':
+      - gem: puppet-blacksmith
+      - gem: travis
+      - gem: travis-lint
+      - gem: guard-rake
+      - gem: overcommit
+        version: '>= 0.39.1'
+    ':system_tests':
+      - gem: beaker-rspec
+      - gem: serverspec
+      - gem: beaker-puppet_install_helper
+        require: false
+
+Rakefile:
+  default_disabled_lint_checks:
+  - 'relative'
+  - 'disable_140chars'
+  - 'disable_class_inherits_from_params_class'
+  - 'disable_documentation'
+  default_enabled_rake_targets:
+  - 'metadata_lint'
+  - 'release_checks'
+...
+# vim: syntax=yaml
