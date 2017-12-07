@@ -1,4 +1,5 @@
 ---
+- puppet-iota
 - puppet-nixstats
 - puppet-bitcoind
 - puppet-vmwaretools

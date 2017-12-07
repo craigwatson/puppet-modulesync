@@ -2,6 +2,7 @@
 .gitignore:
   paths:
     - pkg
+    - '*.log'
 
 .travis.yml:
   email: 'craig@cwatson.org'
